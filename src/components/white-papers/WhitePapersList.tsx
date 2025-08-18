@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Download, Calendar, Eye, FileText } from "lucide-react";
 
 const whitePapers = [
@@ -141,9 +142,11 @@ export default function WhitePapersList() {
             >
               {/* Image */}
               <div className="relative h-40 overflow-hidden">
-                <img
+                <Image
                   src={paper.image}
                   alt={paper.title}
+                  width={400}
+                  height={160}
                   className="w-full h-full object-cover"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-r ${paper.color} opacity-20`}></div>

@@ -72,7 +72,7 @@ export default function WhitePapersNewsletter() {
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">Early Access</h3>
               <p className="text-gray-300 text-sm text-center">
-                Get white papers before they're publicly available
+                Get white papers before they&apos;re publicly available
               </p>
             </motion.div>
 
