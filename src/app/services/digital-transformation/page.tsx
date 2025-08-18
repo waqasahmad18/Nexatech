@@ -50,30 +50,33 @@ const serviceData = {
   ],
   process: [
     {
-      step: 1,
+      step: "1",
       title: "Current State Analysis",
       description: "Comprehensive assessment of your existing processes, technologies, and digital maturity level."
     },
     {
-      step: 2,
+      step: "2",
       title: "Vision & Strategy",
       description: "Define your digital vision and create a strategic roadmap for transformation initiatives."
     },
     {
-      step: 3,
+      step: "3",
       title: "Implementation Planning",
       description: "Develop detailed implementation plans with timelines, resources, and success metrics."
     },
     {
-      step: 4,
+      step: "4",
       title: "Execution & Support",
       description: "Execute transformation initiatives with ongoing support and continuous optimization."
     }
   ],
   technologies: [
-    "Cloud Platforms", "Microsoft 365", "Salesforce", "ServiceNow", 
-    "RPA Tools", "API Management", "Microservices", "Docker", 
-    "Kubernetes", "DevOps Tools", "Analytics Platforms", "AI/ML"
+    { name: "Cloud Platforms", category: "Infrastructure", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230EA5E9'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ECP%3C/text%3E%3C/svg%3E" },
+    { name: "Microsoft 365", category: "Productivity", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23FF6B35'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EM365%3C/text%3E%3C/svg%3E" },
+    { name: "Salesforce", category: "CRM", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2300A1E0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESF%3C/text%3E%3C/svg%3E" },
+    { name: "ServiceNow", category: "ITSM", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2362D84E'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ESN%3C/text%3E%3C/svg%3E" },
+    { name: "Docker", category: "Containerization", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%232496ED'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EDK%3C/text%3E%3C/svg%3E" },
+    { name: "Kubernetes", category: "Orchestration", logo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23326CE5'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3EK8s%3C/text%3E%3C/svg%3E" }
   ]
 };
 

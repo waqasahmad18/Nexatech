@@ -6,7 +6,7 @@ import { useState } from "react";
 
 interface DocSection {
   title: string;
-  icon: any;
+  icon: React.ComponentType<any>;
   items: string[];
 }
 

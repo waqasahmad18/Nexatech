@@ -4,7 +4,18 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 
-const projects: any[] = [];
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  tech: string[];
+  color: string;
+  slug: string;
+}
+
+const projects: Project[] = [];
 
 const categories = ["All", "Web Development", "Mobile Development", "Digital Transformation"];
 
