@@ -54,3 +54,21 @@ body {
     background: #1e293b;
   }
 }
+
+/* Mobile header constraints */
+@media (max-width: 768px) {
+  header {
+    overflow: hidden;
+    max-width: 100vw;
+  }
+  
+  header > div {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  
+  header > div > div {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+}
