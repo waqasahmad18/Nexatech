@@ -36,7 +36,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/">
@@ -93,7 +93,7 @@ export default function Header() {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2 relative z-50 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors duration-200"
+            className="md:hidden text-white p-2 relative z-50 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors duration-200 ml-2"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
@@ -107,7 +107,7 @@ export default function Header() {
             opacity: isOpen ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden bg-slate-900/98 backdrop-blur-md rounded-lg mt-2 mx-2 border border-slate-700 shadow-xl"
+          className="md:hidden overflow-hidden bg-slate-900/98 backdrop-blur-md rounded-lg mt-2 border border-slate-700 shadow-xl"
         >
           <nav className="flex flex-col space-y-3 p-4 sm:p-6">
             {navItems.map((item, index) => (
