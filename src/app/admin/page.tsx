@@ -26,7 +26,7 @@ export default async function AdminPage() {
         text={
           signedIn
             ? "Emails from the website forms are saved here. Pick one and send that client a quotation."
-            : "This address is not linked on the site. Sign in to open the dashboard."
+            : "Sign in to review client enquiries and send quotations."
         }
       />
       <section className="bg-neutral-100 py-16">
