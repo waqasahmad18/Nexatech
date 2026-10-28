@@ -91,7 +91,13 @@ export async function POST(request: Request) {
 
   if (email) {
     try {
-      await savePromoEmail({ email, name, source, service });
+      await savePromoEmail({
+        email,
+        name,
+        source,
+        service,
+        page: clean(fields.page, 500) || source,
+      });
     } catch {
       // The enquiry mail already went out. A storage miss should not fail the visitor.
     }

@@ -39,7 +39,8 @@ export default function PromoList({
               <p className="font-semibold">{entry.email}</p>
               <p className="text-neutral-600">{entry.name || "No name"}</p>
             </div>
-            <p className="text-neutral-700">{entry.service || entry.source || "Website form"}</p>
+              <p className="text-neutral-700">{entry.service || "Website form"}</p>
+              {entry.page ? <p className="break-all text-xs text-neutral-500">{entry.page}</p> : null}
             <div className="flex items-center justify-between gap-3 sm:justify-end">
               <p className="text-neutral-500">{new Date(entry.savedAt).toLocaleString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</p>
               {onUse ? (

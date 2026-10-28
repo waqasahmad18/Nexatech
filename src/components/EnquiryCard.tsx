@@ -19,6 +19,7 @@ export default function EnquiryCard({ serviceTitle }: { serviceTitle?: string })
     try {
       await submitForm({
         source: window.location.pathname,
+        page: window.location.href,
         name: data.get("name"),
         email: data.get("email"),
         phone: data.get("phone"),
