@@ -8,7 +8,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "Mobile App Development - iOS & Android Apps | NexaTech Pakistan",
+  title: "Mobile App Development - iOS & Android Apps | Bravionix Pakistan",
   description: "Professional mobile app development services in Pakistan. We create native and cross-platform mobile applications using React Native, Flutter, and native technologies.",
 };
 

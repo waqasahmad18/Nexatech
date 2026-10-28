@@ -22,7 +22,7 @@ export default function TermsHero() {
           </h1>
           
           <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Please read these terms carefully before using NexaTech services. These terms govern your use of our software solutions and services.
+            Please read these terms carefully before using Bravionix services. These terms govern your use of our software solutions and services.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">

@@ -146,7 +146,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${project.title} - NexaTech Portfolio`,
+    title: `${project.title} - Bravionix Portfolio`,
     description: project.description,
   };
 }

@@ -14,10 +14,10 @@ export default function DocumentationContent() {
   };
 
   const codeExamples = {
-    authentication: `// Authentication with NexaTech API
-const nexatech = require('@nexatech/sdk');
+    authentication: `// Authentication with Bravionix API
+const bravionix = require('@bravionix/sdk');
 
-const client = new nexatech.Client({
+const client = new bravionix.Client({
   apiKey: 'your_api_key_here',
   environment: 'production' // or 'sandbox'
 });
@@ -77,10 +77,10 @@ const confirmedPayment = await client.payments.confirm(payment.id, {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-4">
-            Getting Started with NexaTech API
+            Getting Started with Bravionix API
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300">
-            Learn how to integrate NexaTech services into your applications with our comprehensive API documentation.
+            Learn how to integrate Bravionix services into your applications with our comprehensive API documentation.
           </p>
         </div>
 

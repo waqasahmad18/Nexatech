@@ -5,8 +5,8 @@ import BlogPosts from "@/components/blog/BlogPosts";
 import BlogCategories from "@/components/blog/BlogCategories";
 
 export const metadata = {
-  title: "Blog - NexaTech | Latest Tech Insights & Industry Updates",
-  description: "Stay updated with the latest technology trends, development insights, and industry news from NexaTech's expert team.",
+  title: "Blog - Bravionix | Latest Tech Insights & Industry Updates",
+  description: "Stay updated with the latest technology trends, development insights, and industry news from Bravionix's expert team.",
 };
 
 export default function BlogPage() {

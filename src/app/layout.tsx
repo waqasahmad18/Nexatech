@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import CursorLight from "@/components/CursorLight";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -27,8 +28,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "NexaTech - Leading Software Company in Pakistan",
-  description: "NexaTech is Pakistan's premier software development company specializing in web development, mobile apps, cloud solutions, and digital transformation.",
+  title: "Bravioniyx Technologies — Custom Software & IT Services",
+  description:
+    "Bravioniyx Technologies designs and supports custom software, websites, RDP, servers, networking, IT support, chat servers, cloud and VPS, and Unity games.",
 };
 
 export default function RootLayout({
@@ -39,8 +41,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-neutral-950`}
       >
+        <CursorLight />
         {children}
       </body>
     </html>

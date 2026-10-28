@@ -5,8 +5,8 @@ import ApiEndpoints from "@/components/api-reference/ApiEndpoints";
 import ApiPlayground from "@/components/api-reference/ApiPlayground";
 
 export const metadata = {
-  title: "API Reference - Complete REST API Documentation | NexaTech",
-  description: "Complete API reference for NexaTech services. Explore all endpoints, request/response examples, authentication methods, and interactive API playground.",
+  title: "API Reference - Complete REST API Documentation | Bravionix",
+  description: "Complete API reference for Bravionix services. Explore all endpoints, request/response examples, authentication methods, and interactive API playground.",
 };
 
 export default function ApiReferencePage() {

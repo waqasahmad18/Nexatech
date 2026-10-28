@@ -8,7 +8,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "AI & Machine Learning Services - Artificial Intelligence Solutions | NexaTech",
+  title: "AI & Machine Learning Services - Artificial Intelligence Solutions | Bravionix",
   description: "Professional AI and machine learning services in Pakistan. We build intelligent solutions using deep learning, NLP, computer vision, and predictive analytics.",
 };
 

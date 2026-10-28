@@ -22,7 +22,7 @@ export default function DocumentationHero() {
           </h1>
           
           <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Everything you need to integrate with NexaTech services. Comprehensive guides, API references, code examples, and best practices to get you started quickly.
+            Everything you need to integrate with Bravionix services. Comprehensive guides, API references, code examples, and best practices to get you started quickly.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">

@@ -18,7 +18,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: "hello@nexatech.pk",
+    details: "bravioniyxtecnology@gmail.com",
     subtitle: "We respond within 24 hours",
     color: "from-blue-500 to-cyan-500"
   },
@@ -136,7 +136,7 @@ export default function ContactInfo() {
       >
         <h3 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center">
           <MessageSquare className="mr-2 text-blue-600" size={20} />
-          Why Choose NexaTech?
+          Why Choose Bravionix?
         </h3>
         <div className="space-y-4">
           {whyChooseUs.map((item, index) => (

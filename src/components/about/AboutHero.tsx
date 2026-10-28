@@ -32,7 +32,7 @@ export default function AboutHero() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-300 bg-clip-text text-transparent mb-6">
-            About NexaTech
+            About Bravionix
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
@@ -66,7 +66,7 @@ export default function AboutHero() {
               </div>
               <h3 className="text-lg font-semibold text-white mb-2">Our Values</h3>
               <p className="text-gray-300 text-sm text-center">
-                Excellence, integrity, innovation, and client satisfaction form the core of everything we do at NexaTech.
+                Excellence, integrity, innovation, and client satisfaction form the core of everything we do at Bravionix.
               </p>
             </motion.div>
 

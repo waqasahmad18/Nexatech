@@ -7,7 +7,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "Digital Transformation Services - Modernize Your Business | NexaTech",
+  title: "Digital Transformation Services - Modernize Your Business | Bravionix",
   description: "Comprehensive digital transformation consulting services in Pakistan. Modernize your business operations, embrace digital technologies, and drive innovation with our expert guidance.",
 };
 

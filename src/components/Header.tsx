@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Logo from "@/components/Logo";
+import { navItems } from "@/data/site";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,22 +19,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Services", href: "/services" },
-    { name: "About", href: "/about" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Contact", href: "/contact" },
-  ];
-
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-slate-900/90 backdrop-blur-md shadow-lg" 
+        scrolled
+          ? "border-b border-white/10 bg-black/80 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -41,14 +35,8 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
             <Link href="/">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg sm:text-xl">N</span>
-                </div>
-                <span className="text-white font-bold text-lg sm:text-xl">NexaTech</span>
+              <motion.div whileHover={{ scale: 1.03 }} className="cursor-pointer">
+                <Logo />
               </motion.div>
             </Link>
 
@@ -64,10 +52,10 @@ export default function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="text-gray-300 hover:text-white transition-colors duration-300 relative group"
+                    className="relative text-sm text-white/70 transition-colors duration-300 hover:text-white group"
                   >
                     {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 group-hover:w-full transition-all duration-300"></span>
+                    <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#E10600] transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 </motion.div>
               ))}
@@ -84,7 +72,7 @@ export default function Header() {
             >
               <Link
                 href="/contact"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300"
+                className="rounded-full bg-[#E10600] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#ff2a22] sm:px-6 sm:py-3 sm:text-base"
               >
                 Let's Talk
               </Link>
@@ -94,7 +82,7 @@ export default function Header() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-white p-2 relative z-50 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors duration-200 flex-shrink-0"
+              className="relative z-50 flex-shrink-0 rounded-lg border border-white/10 bg-black/40 p-2 text-white transition-colors duration-200 hover:bg-white/10 md:hidden"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </motion.button>
@@ -108,7 +96,7 @@ export default function Header() {
               opacity: isOpen ? 1 : 0,
             }}
             transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden bg-slate-900/98 backdrop-blur-md rounded-lg mt-2 border border-slate-700 shadow-xl"
+            className="mt-2 overflow-hidden rounded-lg border border-white/10 bg-black/95 shadow-xl backdrop-blur-md md:hidden"
           >
             <nav className="flex flex-col space-y-3 p-4 sm:p-6">
               {navItems.map((item, index) => (
@@ -135,7 +123,7 @@ export default function Header() {
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold mt-4 text-center text-base"
+                  className="mt-4 block rounded-full bg-[#E10600] px-6 py-3 text-center text-base font-semibold text-white"
                 >
                   Let's Talk
                 </Link>

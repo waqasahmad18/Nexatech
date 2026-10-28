@@ -8,7 +8,7 @@ const team = [
     name: "James Wilson",
     role: "Chief Executive Officer",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-    bio: "Visionary leader with 10+ years in tech industry, driving NexaTech's strategic growth and innovation.",
+    bio: "Visionary leader with 10+ years in tech industry, driving Bravionix's strategic growth and innovation.",
     social: {
       linkedin: "#",
       twitter: "#"

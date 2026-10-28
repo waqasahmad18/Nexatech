@@ -8,12 +8,12 @@ const team = [
     name: "James Wilson",
     role: "Chief Executive Officer",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-    bio: "Visionary leader with 10+ years in tech industry, driving NexaTech's strategic growth and innovation across Pakistan's digital landscape.",
+    bio: "Visionary leader with 10+ years in tech industry, driving Bravionix's strategic growth and innovation across Pakistan's digital landscape.",
     expertise: ["Strategic Planning", "Business Development", "Team Leadership"],
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "james@nexatech.pk"
+      email: "james@bravionix.com"
     }
   },
   {
@@ -25,7 +25,7 @@ const team = [
     social: {
       linkedin: "#",
       github: "#",
-      email: "emily@nexatech.pk"
+      email: "emily@bravionix.com"
     }
   },
   {
@@ -38,7 +38,7 @@ const team = [
       linkedin: "#",
       github: "#",
       twitter: "#",
-      email: "michael@nexatech.pk"
+      email: "michael@bravionix.com"
     }
   },
   {
@@ -50,7 +50,7 @@ const team = [
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "emma@nexatech.pk"
+      email: "emma@bravionix.com"
     }
   },
   {
@@ -62,7 +62,7 @@ const team = [
     social: {
       linkedin: "#",
       github: "#",
-      email: "david@nexatech.pk"
+      email: "david@bravionix.com"
     }
   },
   {
@@ -74,7 +74,7 @@ const team = [
     social: {
       linkedin: "#",
       twitter: "#",
-      email: "annie@nexatech.pk"
+      email: "annie@bravionix.com"
     }
   },
   {
@@ -86,7 +86,7 @@ const team = [
     social: {
       linkedin: "#",
       github: "#",
-      email: "robert@nexatech.pk"
+      email: "robert@bravionix.com"
     }
   },
   {
@@ -98,7 +98,7 @@ const team = [
     social: {
       linkedin: "#",
       github: "#",
-      email: "zara@nexatech.pk"
+      email: "zara@bravionix.com"
     }
   },
   {
@@ -110,7 +110,7 @@ const team = [
     social: {
       linkedin: "#",
       github: "#",
-      email: "christopher@nexatech.pk"
+      email: "christopher@bravionix.com"
     }
   }
 ];

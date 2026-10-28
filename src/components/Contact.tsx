@@ -1,5 +1,6 @@
 "use client";
 
+import { submitForm } from "@/lib/submitForm";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { 
@@ -16,30 +17,30 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: "hello@nexatech.pk",
+    details: "bravioniyxtecnology@gmail.com",
     subtitle: "We'll respond within 24 hours",
-    color: "from-blue-500 to-cyan-500"
+    color: "from-neutral-950 to-neutral-800"
   },
   {
     icon: Phone,
     title: "Call Us",
     details: "+92 300 1234567",
-    subtitle: "Mon-Fri 9AM-6PM PST",
-    color: "from-green-500 to-emerald-500"
+    subtitle: "Mon-Fri 9AM-6PM PKT",
+    color: "from-[#E10600] to-[#9a0400]"
   },
   {
     icon: MapPin,
     title: "Visit Us",
     details: "Lahore, Pakistan",
-    subtitle: "Schedule an appointment",
-    color: "from-purple-500 to-pink-500"
+    subtitle: "Pakistan · Saudi Arabia · UAE",
+    color: "from-neutral-950 to-neutral-800"
   },
   {
     icon: Clock,
     title: "Working Hours",
     details: "Mon-Fri: 9AM-6PM",
     subtitle: "Saturday: 10AM-4PM",
-    color: "from-orange-500 to-red-500"
+    color: "from-[#E10600] to-[#9a0400]"
   }
 ];
 
@@ -53,11 +54,14 @@ export default function Contact() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    try {
+      await submitForm({ ...formData, source: "Contact" });
+      setIsSubmitted(true);
+    } catch {
+      setIsSubmitted(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -85,7 +89,7 @@ export default function Contact() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6"
           >
-            Get In <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Touch</span>
+            Get in <span className="text-[#E10600]">touch</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -148,28 +152,28 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-2xl border border-blue-200 dark:border-blue-700"
+              className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 dark:border-white/10 dark:bg-white/5"
             >
-              <h4 className="font-bold text-slate-800 dark:text-white mb-4 flex items-center">
-                <MessageSquare className="mr-2 text-blue-600" size={20} />
-                Why Choose NexaTech?
+              <h4 className="mb-4 flex items-center font-bold text-slate-800 dark:text-white">
+                <MessageSquare className="mr-2 text-[#E10600]" size={20} />
+                Why work with Bravionix?
               </h4>
               <ul className="space-y-2 text-slate-600 dark:text-slate-300">
                 <li className="flex items-center">
-                  <CheckCircle className="mr-2 text-green-500" size={16} />
-                  Expert team with 5+ years experience
+                  <CheckCircle className="mr-2 text-[#E10600]" size={16} />
+                  Custom software, web apps, and HRM systems
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="mr-2 text-green-500" size={16} />
-                  24/7 support and maintenance
+                  <CheckCircle className="mr-2 text-[#E10600]" size={16} />
+                  Networking, servers, and IT support
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="mr-2 text-green-500" size={16} />
-                  Competitive pricing and timely delivery
+                  <CheckCircle className="mr-2 text-[#E10600]" size={16} />
+                  Delivery for Pakistan, Saudi Arabia, and the UAE
                 </li>
                 <li className="flex items-center">
-                  <CheckCircle className="mr-2 text-green-500" size={16} />
-                  100% satisfaction guarantee
+                  <CheckCircle className="mr-2 text-[#E10600]" size={16} />
+                  A direct enquiry before any build starts
                 </li>
               </ul>
             </motion.div>
@@ -265,12 +269,13 @@ export default function Contact() {
                   className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
                 >
                   <option value="">Select a service</option>
-                  <option value="web-development">Web Development</option>
-                  <option value="mobile-development">Mobile App Development</option>
-                  <option value="cloud-solutions">Cloud Solutions</option>
-                  <option value="ui-ux-design">UI/UX Design</option>
-                  <option value="cybersecurity">Cybersecurity</option>
-                  <option value="ai-ml">AI & Machine Learning</option>
+                  <option value="custom-software">Custom Software</option>
+                  <option value="web-applications">Web Applications</option>
+                  <option value="hrm">HRM Systems</option>
+                  <option value="it-support">IT Support</option>
+                  <option value="networking">Networking</option>
+                  <option value="servers">Server & RDP</option>
+                  <option value="automation">Automation</option>
                   <option value="other">Other</option>
                 </select>
               </motion.div>

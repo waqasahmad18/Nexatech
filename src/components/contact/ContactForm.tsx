@@ -1,5 +1,6 @@
 "use client";
 
+import { submitForm } from "@/lib/submitForm";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Send, CheckCircle, Upload, X } from "lucide-react";
@@ -20,12 +21,28 @@ export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 5000);
+    try {
+      await submitForm({
+        source: "Project form",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.projectType,
+        message: formData.message,
+        extra: {
+          Company: formData.company,
+          Budget: formData.budget,
+          Timeline: formData.timeline,
+          "Heard about us": formData.hearAbout,
+          Files: files.map((file) => file.name).join(", "),
+        },
+      });
+      setIsSubmitted(true);
+    } catch {
+      setIsSubmitted(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {

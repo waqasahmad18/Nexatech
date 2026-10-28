@@ -6,8 +6,8 @@ import SupportFAQ from "@/components/support/SupportFAQ";
 import SupportContact from "@/components/support/SupportContact";
 
 export const metadata = {
-  title: "Support Center - Get Help | NexaTech Customer Support",
-  description: "Get help with NexaTech services. Find answers in our FAQ, contact support, or access our knowledge base. 24/7 support available for enterprise customers.",
+  title: "Support Center - Get Help | Bravionix Customer Support",
+  description: "Get help with Bravionix services. Find answers in our FAQ, contact support, or access our knowledge base. 24/7 support available for enterprise customers.",
 };
 
 export default function SupportPage() {

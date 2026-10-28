@@ -8,7 +8,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "Cloud Solutions - AWS, Azure & Google Cloud Services | NexaTech",
+  title: "Cloud Solutions - AWS, Azure & Google Cloud Services | Bravionix",
   description: "Professional cloud solutions and migration services in Pakistan. We help businesses leverage AWS, Azure, and Google Cloud for scalability, security, and cost optimization.",
 };
 

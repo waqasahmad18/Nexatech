@@ -9,11 +9,11 @@ const faqs = [
     category: "General",
     questions: [
       {
-        question: "What services does NexaTech provide?",
-        answer: "NexaTech provides comprehensive software development services including web development, mobile app development, cloud solutions, UI/UX design, cybersecurity, and AI/machine learning solutions."
+        question: "What services does Bravionix provide?",
+        answer: "Bravionix provides comprehensive software development services including web development, mobile app development, cloud solutions, UI/UX design, cybersecurity, and AI/machine learning solutions."
       },
       {
-        question: "How do I get started with NexaTech?",
+        question: "How do I get started with Bravionix?",
         answer: "You can get started by contacting us through our contact form, scheduling a consultation call, or reaching out via live chat. We'll discuss your project requirements and provide a customized solution."
       },
       {

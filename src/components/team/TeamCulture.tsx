@@ -70,7 +70,7 @@ export default function TeamCulture() {
             Our Culture & Values
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            We've built a culture that fosters creativity, collaboration, and continuous growth. Here's what makes NexaTech a great place to work.
+            We've built a culture that fosters creativity, collaboration, and continuous growth. Here's what makes Bravionix a great place to work.
           </p>
         </motion.div>
 
@@ -115,7 +115,7 @@ export default function TeamCulture() {
               Why Join Our Team?
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
-              At NexaTech, we don't just offer jobs – we offer careers. Join a team that values your growth, celebrates your achievements, and supports your journey in the tech industry.
+              At Bravionix, we don't just offer jobs – we offer careers. Join a team that values your growth, celebrates your achievements, and supports your journey in the tech industry.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -210,7 +210,7 @@ export default function TeamCulture() {
           className="mt-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-8 rounded-2xl border border-blue-200 dark:border-blue-700 text-center"
         >
           <blockquote className="text-xl text-slate-700 dark:text-slate-300 mb-6 italic">
-            "Working at NexaTech has been an incredible journey. The team is supportive, the projects are challenging, and there's always room to grow and learn new technologies."
+            "Working at Bravionix has been an incredible journey. The team is supportive, the projects are challenging, and there's always room to grow and learn new technologies."
           </blockquote>
           <div className="flex items-center justify-center space-x-4">
             <img

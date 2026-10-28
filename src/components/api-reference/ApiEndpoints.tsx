@@ -43,7 +43,7 @@ const endpoints: Endpoint[] = [
     "expires_in": 3600
   }
 }`,
-    example: `curl -X POST https://api.nexatech.pk/v1/auth/login \\
+    example: `curl -X POST https://api.bravionix.com/v1/auth/login \\
   -H "Content-Type: application/json" \\
   -d '{
     "email": "user@example.com",
@@ -68,7 +68,7 @@ const endpoints: Endpoint[] = [
     "updated_at": "2024-01-15T00:00:00Z"
   }
 }`,
-    example: `curl -X GET https://api.nexatech.pk/v1/users/user_123 \\
+    example: `curl -X GET https://api.bravionix.com/v1/users/user_123 \\
   -H "Authorization: Bearer YOUR_API_TOKEN"`
   },
   {
@@ -91,7 +91,7 @@ const endpoints: Endpoint[] = [
     "client_secret": "pi_123_secret_456"
   }
 }`,
-    example: `curl -X POST https://api.nexatech.pk/v1/payments \\
+    example: `curl -X POST https://api.bravionix.com/v1/payments \\
   -H "Authorization: Bearer YOUR_API_TOKEN" \\
   -H "Content-Type: application/json" \\
   -d '{

@@ -7,7 +7,7 @@ const milestones = [
   {
     year: "2019",
     title: "Company Founded",
-    description: "NexaTech was established with a vision to bridge the technology gap in Pakistan"
+    description: "Bravionix was established with a vision to bridge the technology gap in Pakistan"
   },
   {
     year: "2020",
@@ -73,7 +73,7 @@ export default function AboutContent() {
               Our Story
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-              Founded in 2019, NexaTech emerged from a simple yet powerful vision: to transform how businesses in Pakistan leverage technology for growth and innovation. What started as a small team of passionate developers has evolved into one of the region's most trusted technology partners.
+              Founded in 2019, Bravionix emerged from a simple yet powerful vision: to transform how businesses in Pakistan leverage technology for growth and innovation. What started as a small team of passionate developers has evolved into one of the region's most trusted technology partners.
             </p>
             <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
               Our journey has been marked by continuous learning, adaptation, and an unwavering commitment to excellence. We've had the privilege of working with startups, SMEs, and large enterprises, helping them navigate the digital landscape and achieve their business objectives.
@@ -108,7 +108,7 @@ export default function AboutContent() {
           >
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
-              alt="NexaTech Team"
+              alt="Bravionix Team"
               className="w-full h-96 object-cover rounded-2xl shadow-2xl"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl"></div>

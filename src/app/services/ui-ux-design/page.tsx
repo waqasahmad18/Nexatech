@@ -8,7 +8,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "UI/UX Design Services - User Experience & Interface Design | NexaTech",
+  title: "UI/UX Design Services - User Experience & Interface Design | Bravionix",
   description: "Professional UI/UX design services in Pakistan. We create intuitive user interfaces and exceptional user experiences for web and mobile applications.",
 };
 

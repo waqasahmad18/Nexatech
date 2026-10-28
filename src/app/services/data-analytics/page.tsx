@@ -7,7 +7,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "Data Analytics Services - Business Intelligence & Data Science | NexaTech",
+  title: "Data Analytics Services - Business Intelligence & Data Science | Bravionix",
   description: "Professional data analytics and business intelligence services in Pakistan. Transform your data into actionable insights with advanced analytics, visualization, and machine learning.",
 };
 

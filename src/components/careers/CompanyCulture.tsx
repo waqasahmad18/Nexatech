@@ -68,7 +68,7 @@ const testimonials = [
     name: "James Wilson",
     role: "Senior Developer",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
-    quote: "NexaTech has provided me with incredible opportunities to grow my skills and work on exciting projects that make a real impact."
+    quote: "Bravionix has provided me with incredible opportunities to grow my skills and work on exciting projects that make a real impact."
   },
   {
     name: "Emma Kalinton",
@@ -80,7 +80,7 @@ const testimonials = [
     name: "Michael Davis",
     role: "Project Manager",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
-    quote: "Working at NexaTech has been the best decision of my career. The work-life balance and growth opportunities are exceptional."
+    quote: "Working at Bravionix has been the best decision of my career. The work-life balance and growth opportunities are exceptional."
   }
 ];
 
@@ -100,7 +100,7 @@ export default function CompanyCulture() {
             Our Company Culture
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            At NexaTech, we've built a culture that fosters creativity, collaboration, and continuous growth. Here's what makes our workplace special.
+            At Bravionix, we've built a culture that fosters creativity, collaboration, and continuous growth. Here's what makes our workplace special.
           </p>
         </motion.div>
 

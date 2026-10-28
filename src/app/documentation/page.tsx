@@ -5,8 +5,8 @@ import DocumentationSidebar from "@/components/documentation/DocumentationSideba
 import DocumentationContent from "@/components/documentation/DocumentationContent";
 
 export const metadata = {
-  title: "Documentation - Developer Resources | NexaTech API & SDKs",
-  description: "Comprehensive documentation for NexaTech APIs, SDKs, and development tools. Get started with our technical guides, code examples, and integration resources.",
+  title: "Documentation - Developer Resources | Bravionix API & SDKs",
+  description: "Comprehensive documentation for Bravionix APIs, SDKs, and development tools. Get started with our technical guides, code examples, and integration resources.",
 };
 
 export default function DocumentationPage() {

@@ -1,9 +1,34 @@
 "use client";
 
+import { brand } from "@/data/site";
+import { submitForm } from "@/lib/submitForm";
 import { motion } from "framer-motion";
+import { FormEvent, useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 
 export default function SupportContact() {
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError("");
+    const data = new FormData(event.currentTarget);
+    const name = `${data.get("firstName") || ""} ${data.get("lastName") || ""}`.trim();
+    try {
+      await submitForm({
+        source: "/support",
+        name,
+        email: data.get("email"),
+        service: data.get("subject"),
+        message: data.get("message"),
+      });
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "The message could not be sent.");
+    }
+  };
+
   return (
     <section className="py-20 bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-6">
@@ -40,9 +65,9 @@ export default function SupportContact() {
                   <Mail className="text-white" size={20} />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-800 dark:text-white mb-1">Email</h4>
-                  <p className="text-slate-600 dark:text-slate-300">support@nexatech.pk</p>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">For general inquiries and support</p>
+                  <h4 className="font-semibold text-slate-800 dark:text-white mb-1">Email us</h4>
+                  <a href={`mailto:${brand.email}`} className="text-slate-600 dark:text-slate-300 hover:text-[#E10600]">{brand.email}</a>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">For inquiries, email us</p>
                 </div>
               </div>
 
@@ -122,13 +147,15 @@ export default function SupportContact() {
               Send us a Message
             </h3>
 
-            <form className="space-y-6">
+            <form onSubmit={onSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                     First Name
                   </label>
                   <input
+                    name="firstName"
+                    required
                     type="text"
                     className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="John"
@@ -139,6 +166,7 @@ export default function SupportContact() {
                     Last Name
                   </label>
                   <input
+                    name="lastName"
                     type="text"
                     className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Doe"
@@ -151,6 +179,8 @@ export default function SupportContact() {
                   Email Address
                 </label>
                 <input
+                  name="email"
+                  required
                   type="email"
                   className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="john@example.com"
@@ -161,7 +191,7 @@ export default function SupportContact() {
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Subject
                 </label>
-                <select className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <select name="subject" className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                   <option>General Inquiry</option>
                   <option>Technical Support</option>
                   <option>Billing Question</option>
@@ -175,16 +205,21 @@ export default function SupportContact() {
                   Message
                 </label>
                 <textarea
+                  name="message"
+                  required
                   rows={5}
                   className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Please describe your question or request in detail..."
                 ></textarea>
               </div>
 
+              {sent ? <p className="text-sm font-medium text-slate-700 dark:text-white">Message sent. A copy is on its way to your email.</p> : null}
+              {error ? <p className="text-sm text-red-600">{error}</p> : null}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
+                disabled={sent}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 <Send size={20} />

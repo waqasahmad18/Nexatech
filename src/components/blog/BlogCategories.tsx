@@ -1,6 +1,8 @@
 "use client";
 
+import { submitForm } from "@/lib/submitForm";
 import { motion } from "framer-motion";
+import { FormEvent, useState } from "react";
 import { Search, Tag, TrendingUp } from "lucide-react";
 
 const categories = [
@@ -40,6 +42,14 @@ const tags = [
 ];
 
 export default function BlogCategories() {
+  const [subscribed, setSubscribed] = useState(false);
+
+  const onSubscribe = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    await submitForm({ source: "/blog", email: data.get("email"), message: "Newsletter signup" });
+    setSubscribed(true);
+  };
   return (
     <div className="space-y-8">
       {/* Search */}
@@ -173,16 +183,18 @@ export default function BlogCategories() {
         <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm">
           Subscribe to our newsletter and get the latest tech insights delivered to your inbox.
         </p>
-        <div className="space-y-3">
+        <form onSubmit={onSubscribe} className="space-y-3">
           <input
+            name="email"
+            required
             type="email"
             placeholder="Enter your email"
             className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
           />
-          <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-xl font-semibold transition-all duration-300">
-            Subscribe
+          <button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 rounded-xl font-semibold transition-all duration-300">
+            {subscribed ? "Subscribed" : "Subscribe"}
           </button>
-        </div>
+        </form>
       </motion.div>
     </div>
   );

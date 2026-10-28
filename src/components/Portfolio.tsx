@@ -38,7 +38,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-6"
           >
-            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio</span>
+            Selected <span className="text-[#E10600]">work</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -174,7 +174,7 @@ export default function Portfolio() {
             className="text-center py-8 sm:py-12 lg:py-16 px-4"
           >
             <div className="max-w-md mx-auto">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#E10600] sm:mb-6 sm:h-20 sm:w-20 lg:h-24 lg:w-24">
                 <svg className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
@@ -200,7 +200,7 @@ export default function Portfolio() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto max-w-sm"
+            className="w-full max-w-sm rounded-full bg-black px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-[#E10600] sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
           >
             View All Projects
           </motion.button>

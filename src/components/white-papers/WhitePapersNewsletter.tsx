@@ -1,9 +1,19 @@
 "use client";
 
+import { submitForm } from "@/lib/submitForm";
 import { motion } from "framer-motion";
+import { FormEvent, useState } from "react";
 import { Mail, Bell, Download } from "lucide-react";
 
 export default function WhitePapersNewsletter() {
+  const [subscribed, setSubscribed] = useState(false);
+
+  const onSubscribe = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    await submitForm({ source: "/white-papers", email: data.get("email"), message: "White paper signup" });
+    setSubscribed(true);
+  };
   return (
     <section className="py-20 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 relative overflow-hidden">
       {/* Background Pattern */}
@@ -38,20 +48,23 @@ export default function WhitePapersNewsletter() {
             viewport={{ once: true }}
             className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 mb-8"
           >
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form onSubmit={onSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
+                name="email"
+                required
                 type="email"
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
               <motion.button
+                type="submit"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg"
               >
-                Subscribe
+                {subscribed ? "Subscribed" : "Subscribe"}
               </motion.button>
-            </div>
+            </form>
             
             <p className="text-gray-400 text-sm mt-4">
               No spam, unsubscribe anytime. We respect your privacy.

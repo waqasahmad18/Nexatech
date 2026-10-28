@@ -6,8 +6,8 @@ import CompanyCulture from "@/components/careers/CompanyCulture";
 import Benefits from "@/components/careers/Benefits";
 
 export const metadata = {
-  title: "Careers - Join NexaTech Team | Software Development Jobs in Pakistan",
-  description: "Join our team of expert developers, designers, and innovators. Explore exciting career opportunities at NexaTech and help shape Pakistan's digital future.",
+  title: "Careers - Join Bravionix Team | Software Development Jobs in Pakistan",
+  description: "Join our team of expert developers, designers, and innovators. Explore exciting career opportunities at Bravionix and help shape Pakistan's digital future.",
 };
 
 export default function CareersPage() {

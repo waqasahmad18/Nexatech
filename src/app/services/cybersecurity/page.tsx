@@ -8,7 +8,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "Cybersecurity Services - Security Consulting & Solutions | NexaTech",
+  title: "Cybersecurity Services - Security Consulting & Solutions | Bravionix",
   description: "Professional cybersecurity services in Pakistan. We provide security consulting, penetration testing, and comprehensive security solutions to protect your business.",
 };
 

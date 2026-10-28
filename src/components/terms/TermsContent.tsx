@@ -36,17 +36,17 @@ export default function TermsContent() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">1. Acceptance of Terms</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              By accessing and using NexaTech services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+              By accessing and using Bravionix services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
             </p>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              These Terms of Service ("Terms") govern your use of our website located at nexatech.pk and our software services (the "Service") operated by NexaTech ("us", "we", or "our").
+              These Terms of Service ("Terms") govern your use of our website located at bravionix.com and our software services (the "Service") operated by Bravionix ("us", "we", or "our").
             </p>
           </section>
 
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">2. Use License</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Permission is granted to temporarily download one copy of NexaTech materials for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+              Permission is granted to temporarily download one copy of Bravionix materials for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
             </p>
             <ul className="list-disc list-inside text-slate-600 dark:text-slate-300 space-y-2 ml-4">
               <li>modify or copy the materials</li>
@@ -106,7 +106,7 @@ export default function TermsContent() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">7. Limitation of Liability</h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-              In no event shall NexaTech or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use NexaTech services, even if NexaTech or its authorized representative has been notified orally or in writing of the possibility of such damage.
+              In no event shall Bravionix or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use Bravionix services, even if Bravionix or its authorized representative has been notified orally or in writing of the possibility of such damage.
             </p>
           </section>
 
@@ -116,7 +116,7 @@ export default function TermsContent() {
               If you have any questions about these Terms of Service, please contact us at:
             </p>
             <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-              <p className="text-slate-700 dark:text-slate-300 mb-2"><strong>Email:</strong> legal@nexatech.pk</p>
+              <p className="text-slate-700 dark:text-slate-300 mb-2"><strong>Email:</strong> legal@bravionix.com</p>
               <p className="text-slate-700 dark:text-slate-300 mb-2"><strong>Phone:</strong> +92 300 1234567</p>
                               <p className="text-slate-700 dark:text-slate-300"><strong>Service Delivery:</strong> Currently we are providing services remotely with global reach</p>
             </div>

@@ -98,7 +98,7 @@ export default function ServiceCTA({ title, description }: ServiceCTAProps) {
             <div className="flex flex-col sm:flex-row gap-4 text-sm text-gray-300">
               <div className="flex items-center justify-center sm:justify-start">
                 <MessageCircle size={16} className="mr-2" />
-                info@nexatech.pk
+                info@bravionix.com
               </div>
               <div className="flex items-center justify-center sm:justify-start">
                 <Phone size={16} className="mr-2" />

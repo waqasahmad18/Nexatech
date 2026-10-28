@@ -8,7 +8,7 @@ import ServiceTechnologies from "@/components/services/ServiceTechnologies";
 import ServiceCTA from "@/components/services/ServiceCTA";
 
 export const metadata = {
-  title: "Web Development Services - Custom Website Development | NexaTech",
+  title: "Web Development Services - Custom Website Development | Bravionix",
   description: "Professional web development services in Pakistan. We build custom websites, web applications, and e-commerce solutions using latest technologies like React, Next.js, and Node.js.",
 };
 
