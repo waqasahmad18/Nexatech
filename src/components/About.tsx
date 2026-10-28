@@ -1,18 +1,10 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function About() {
   return (
     <section className="bg-black py-24 text-white">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="bx-rise">
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#E10600]">About</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">
             Build your digital future with Bravioniyx.
@@ -23,7 +15,7 @@ export default function About() {
           <Link href="/about" className="mt-8 inline-flex bg-white px-6 py-3 text-sm font-semibold text-black hover:bg-[#E10600] hover:text-white">
             About the company
           </Link>
-        </motion.div>
+        </div>
         <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
           {[
             ["Ideas", "A clear scope before any build starts."],

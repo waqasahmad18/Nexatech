@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { services } from "@/data/services";
 
@@ -20,13 +17,7 @@ export default function Services() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <motion.div
-              key={service.slug}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: index * 0.04 }}
-              viewport={{ once: true }}
-            >
+            <div key={service.slug} className="bx-rise" style={{ animationDelay: `${index * 30}ms` }}>
               <Link
                 href={`/services/${service.slug}`}
                 className="group flex h-full flex-col border border-neutral-200 p-6 transition-colors hover:border-black hover:bg-black hover:text-white"
@@ -40,7 +31,7 @@ export default function Services() {
                   ))}
                 </ul>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

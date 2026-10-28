@@ -65,7 +65,7 @@ export default function CursorLight() {
         style={{
           background:
             "radial-gradient(circle, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0.08) 42%, rgba(255,255,255,0) 72%)",
-          mixBlendMode: "screen",
+          mixBlendMode: "normal",
         }}
       />
       <div

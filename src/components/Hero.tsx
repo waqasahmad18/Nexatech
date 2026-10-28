@@ -33,28 +33,20 @@ export default function Hero() {
     <section className="relative flex min-h-screen items-center overflow-hidden bg-black text-white">
       <div className="bx-grid absolute inset-0" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_70%,#000_100%)]" />
-      <div className="pointer-events-none absolute bottom-[18%] right-[12%] h-64 w-64 rounded-full bg-[#E10600]/15 blur-2xl" />
+      <div className="pointer-events-none absolute bottom-[8%] right-[4%] h-80 w-80 bg-[radial-gradient(circle,rgba(225,6,0,0.22),transparent_68%)]" />
 
-      <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[min(88vw,720px)] w-[min(88vw,720px)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 46, repeat: Infinity, ease: "linear" }}
-      >
-        <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#E10600] shadow-[0_0_18px_#E10600]" />
-      </motion.div>
-      <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[min(68vw,520px)] w-[min(68vw,520px)] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/15"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
-      >
-        <span className="absolute top-1/2 -right-1 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-white shadow-[0_0_16px_white]" />
-      </motion.div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[min(88vw,720px)] w-[min(88vw,720px)] -translate-x-1/2 -translate-y-1/2">
+        <div className="bx-orbit relative h-full w-full rounded-full border border-white/10">
+          <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#E10600] shadow-[0_0_18px_#E10600]" />
+        </div>
+      </div>
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[min(68vw,520px)] w-[min(68vw,520px)] -translate-x-1/2 -translate-y-1/2">
+        <div className="bx-orbit-reverse relative h-full w-full rounded-full border border-dashed border-white/15">
+          <span className="absolute top-1/2 -right-1 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-white shadow-[0_0_16px_white]" />
+        </div>
+      </div>
 
-      <motion.div
-        className="bx-scan pointer-events-none absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
-        animate={{ top: ["8%", "88%"] }}
-        transition={{ duration: 6.5, repeat: Infinity, ease: "linear" }}
-      />
+      <div className="bx-scan pointer-events-none absolute left-0 right-0 top-[8%] h-px bg-gradient-to-r from-transparent via-white to-transparent" />
 
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-28 pt-32 text-center">
         <motion.div
@@ -73,19 +65,19 @@ export default function Hero() {
               <motion.span
                 key={`${letter}-${index}`}
                 className="inline-block"
-                initial={{ y: "110%", opacity: 0 }}
+                initial={{ y: "100%", opacity: 0 }}
                 animate={{ y: "0%", opacity: 1 }}
-                transition={{ delay: 0.12 + index * 0.05, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.04 + index * 0.028, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
                 {letter}
               </motion.span>
             ))}
           </span>
           <motion.span
-            initial={{ opacity: 0, letterSpacing: "0.6em" }}
-            animate={{ opacity: 1, letterSpacing: "0.42em" }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="mt-4 block text-xs font-medium text-white/70 sm:text-sm"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.32, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-4 block text-xs font-medium tracking-[0.42em] text-white/70 sm:text-sm"
           >
             TECHNOLOGIES
           </motion.span>
@@ -94,14 +86,14 @@ export default function Hero() {
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ delay: 0.85, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.38, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 h-[3px] w-40 origin-left bg-[#E10600]"
         />
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.95, duration: 0.7 }}
+          transition={{ delay: 0.42, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl"
         >
           We design, develop, and support technology that helps your business run.
@@ -112,7 +104,7 @@ export default function Hero() {
                 initial={{ y: 18, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -18, opacity: 0 }}
-                transition={{ duration: 0.35 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="font-semibold text-[#ff3b30]"
               >
                 {words[wordIndex]}
@@ -124,7 +116,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.6 }}
+          transition={{ delay: 0.5, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 flex flex-wrap items-center justify-center gap-3"
         >
           {["Ideas", "Solutions", "Growth"].map((region) => (
@@ -140,7 +132,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.25, duration: 0.6 }}
+          transition={{ delay: 0.55, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row"
         >
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -166,15 +158,15 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
+        transition={{ delay: 0.7, duration: 0.4 }}
         className="absolute bottom-24 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center text-white/50 sm:flex"
       >
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}>
           <ArrowDown size={18} />
         </motion.div>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-20 border-y border-white/10 bg-black/70 backdrop-blur-md">
+      <div className="absolute bottom-0 left-0 right-0 z-20 border-y border-white/10 bg-black/85">
         <div className="bx-marquee-mask overflow-hidden py-3">
           <div className="bx-marquee flex w-max gap-10">
             {[...marquee, ...marquee].map((item, index) => (
