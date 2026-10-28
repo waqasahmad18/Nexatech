@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import EnquiryCard from "@/components/EnquiryCard";
-import Link from "next/link";
 
 export const metadata = {
   title: "Get a quote — Bravioniyx Technologies",
@@ -27,9 +26,6 @@ export default function GetAQuotePage() {
               <li><span className="font-semibold text-[#E10600]">02</span> You get a branded copy of what you sent.</li>
               <li><span className="font-semibold text-[#E10600]">03</span> The quotation itself is emailed to you when it is ready.</li>
             </ol>
-            <p className="mt-8 text-sm text-neutral-600">
-              Team members send the finished quotation from the <Link href="/quote" className="font-semibold text-black underline">quotation desk</Link>.
-            </p>
           </div>
           <EnquiryCard />
         </div>
