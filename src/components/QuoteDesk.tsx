@@ -1,17 +1,19 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { services } from "@/data/services";
 
 type Line = { description: string; qty: string; price: string };
 
 const emptyLine = (): Line => ({ description: "", qty: "1", price: "" });
 
 export default function QuoteDesk() {
-  const [pin, setPin] = useState("");
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [service, setService] = useState("");
+  const [customService, setCustomService] = useState("");
+  const [serviceDetail, setServiceDetail] = useState("");
   const [quoteNo, setQuoteNo] = useState(`BX-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`);
   const [validUntil, setValidUntil] = useState("");
   const [currency, setCurrency] = useState("PKR");
@@ -39,12 +41,13 @@ export default function QuoteDesk() {
       const response = await fetch("/api/quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({
-          pin,
           clientName,
           clientEmail,
           clientPhone,
-          service,
+          service: service === "Other" ? customService : service,
+          serviceDetail,
           quoteNo,
           validUntil,
           currency,
@@ -70,14 +73,10 @@ export default function QuoteDesk() {
   return (
     <form onSubmit={onSubmit} className="border border-neutral-300 bg-white text-neutral-950">
       <div className="border-b border-neutral-200 px-5 py-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#E10600]">Quotation desk</p>
-        <h2 className="mt-1 text-xl font-semibold tracking-tight">Send a branded quotation</h2>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#E10600]">Send quotation</p>
+        <h2 className="mt-1 text-xl font-semibold tracking-tight">Service detail and pricing</h2>
       </div>
       <div className="grid gap-4 p-5 sm:grid-cols-2">
-        <label className="block text-xs font-medium sm:col-span-2">
-          Desk code
-          <input required value={pin} onChange={(event) => setPin(event.target.value)} className={field} />
-        </label>
         <label className="block text-xs font-medium">
           Client name
           <input required value={clientName} onChange={(event) => setClientName(event.target.value)} className={field} />
@@ -92,7 +91,23 @@ export default function QuoteDesk() {
         </label>
         <label className="block text-xs font-medium">
           Service
-          <input value={service} onChange={(event) => setService(event.target.value)} className={field} />
+          <select required value={service} onChange={(event) => setService(event.target.value)} className={field}>
+            <option value="">Select a service</option>
+            {services.map((item) => (
+              <option key={item.slug} value={item.title}>{item.title}</option>
+            ))}
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        {service === "Other" ? (
+          <label className="block text-xs font-medium sm:col-span-2">
+            Service name
+            <input required value={customService} onChange={(event) => setCustomService(event.target.value)} className={field} />
+          </label>
+        ) : null}
+        <label className="block text-xs font-medium sm:col-span-2">
+          Service detail
+          <textarea required minLength={8} value={serviceDetail} onChange={(event) => setServiceDetail(event.target.value)} rows={3} placeholder="Short description of the work this quotation covers" className={`${field} resize-none`} />
         </label>
         <label className="block text-xs font-medium">
           Quote number
@@ -114,7 +129,7 @@ export default function QuoteDesk() {
 
         <div className="sm:col-span-2">
           <div className="mb-2 flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em]">Lines</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em]">Pricing</p>
             <button type="button" onClick={() => setItems((current) => [...current, emptyLine()])} className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E10600]">
               Add line
             </button>

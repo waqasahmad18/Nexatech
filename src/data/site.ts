@@ -4,8 +4,8 @@ export const brand = {
   mark: "BRAVIONIYX",
   tagline: "Ideas / Solutions / Growth",
   email: "bravioniyxtecnology@gmail.com",
-  phoneDisplay: "03224188759",
-  phoneE164: "923224188759",
+  phoneDisplay: "03297320409",
+  phoneE164: "923297320409",
   location: "Lahore, Pakistan",
 };
 

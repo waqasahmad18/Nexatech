@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import EnquiryCard from "@/components/EnquiryCard";
 import WhatsAppLink from "@/components/WhatsAppLink";
+import EmailLink from "@/components/EmailLink";
 import { brand } from "@/data/site";
 
 export const metadata = {
@@ -26,8 +27,8 @@ export default function ContactPage() {
             <dl className="mt-8 space-y-6">
               <div>
                 <dt className="text-xs uppercase tracking-[0.22em] text-neutral-500">Email us</dt>
-                <dd className="mt-1 text-lg">
-                  <a href={`mailto:${brand.email}`} className="hover:text-[#E10600]">For inquiries, email us at {brand.email}</a>
+                <dd className="mt-3">
+                  <EmailLink onLight />
                 </dd>
               </div>
               <div>

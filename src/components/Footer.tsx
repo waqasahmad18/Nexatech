@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import WhatsAppLink from "@/components/WhatsAppLink";
+import EmailLink from "@/components/EmailLink";
 import { brand, navItems } from "@/data/site";
 import { services } from "@/data/services";
 
@@ -16,12 +17,9 @@ export default function Footer() {
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">
             We design, develop, and support technology for businesses that need software, websites, servers, and IT help in one place.
           </p>
-          <div className="mt-8 space-y-4">
+          <div className="mt-8 flex flex-col items-start gap-4">
             <WhatsAppLink />
-            <a href={`mailto:${brand.email}`} className="block text-sm text-white/80 hover:text-white">
-              Email us for inquiries
-              <span className="mt-1 block text-white">{brand.email}</span>
-            </a>
+            <EmailLink />
           </div>
         </div>
 

@@ -2,14 +2,18 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { navItems } from "@/data/site";
 
 export default function Header() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +22,29 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/admin/session", { credentials: "include" })
+      .then((response) => (response.ok ? response.json() : { admin: false }))
+      .then((data: { admin?: boolean }) => {
+        if (!cancelled) setAdmin(Boolean(data.admin));
+      })
+      .catch(() => {
+        if (!cancelled) setAdmin(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [pathname]);
+
+  const signOut = async () => {
+    await fetch("/api/admin/logout", { method: "POST", credentials: "include" });
+    setAdmin(false);
+    setIsOpen(false);
+    router.push("/");
+    router.refresh();
+  };
 
   return (
     <motion.header
@@ -59,6 +86,16 @@ export default function Header() {
                   </Link>
                 </motion.div>
               ))}
+              {admin ? (
+                <>
+                  <Link href="/quote" className="text-sm font-semibold text-white">
+                    Send quotation
+                  </Link>
+                  <button type="button" onClick={signOut} className="text-sm text-white/60 hover:text-white">
+                    Sign out
+                  </button>
+                </>
+              ) : null}
             </nav>
 
             {/* CTA Button */}
@@ -115,6 +152,16 @@ export default function Header() {
                   </Link>
                 </motion.div>
               ))}
+              {admin ? (
+                <>
+                  <Link href="/quote" onClick={() => setIsOpen(false)} className="block py-2 text-base font-semibold text-white">
+                    Send quotation
+                  </Link>
+                  <button type="button" onClick={signOut} className="py-2 text-left text-base text-white/70">
+                    Sign out
+                  </button>
+                </>
+              ) : null}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}

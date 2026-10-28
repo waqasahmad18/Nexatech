@@ -1,5 +1,6 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { brandedEmail, escapeHtml, getMailer, logoAttachment } from "@/lib/mail";
+import { ADMIN_COOKIE, verifySessionToken } from "@/lib/adminAuth";
 
 type Item = { description: string; qty: number; price: number };
 
@@ -12,7 +13,11 @@ function money(amount: number, currency: string) {
   return `${currency} ${formatted}`;
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  if (!verifySessionToken(request.cookies.get(ADMIN_COOKIE)?.value)) {
+    return NextResponse.json({ error: "Sign in as admin to send a quotation." }, { status: 401 });
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -21,22 +26,22 @@ export async function POST(request: Request) {
   }
 
   const fields = (body ?? {}) as Record<string, unknown>;
-  const pin = clean(fields.pin, 80);
-  if (!process.env.QUOTE_PIN || pin !== process.env.QUOTE_PIN) {
-    return NextResponse.json({ error: "The quotation code is not correct." }, { status: 401 });
-  }
-
   const clientName = clean(fields.clientName, 120);
   const clientEmail = clean(fields.clientEmail, 200);
   const clientPhone = clean(fields.clientPhone, 40);
   const quoteNo = clean(fields.quoteNo, 40) || "BX-QUOTE";
   const service = clean(fields.service, 160);
+  const serviceDetail = clean(fields.serviceDetail, 2000);
   const validUntil = clean(fields.validUntil, 40);
   const notes = clean(fields.notes, 2000);
   const currency = clean(fields.currency, 8) || "PKR";
 
   if (!clientName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientEmail)) {
     return NextResponse.json({ error: "Client name and a valid email are required." }, { status: 400 });
+  }
+
+  if (!service || serviceDetail.length < 8) {
+    return NextResponse.json({ error: "Add the service and a short detail of the work." }, { status: 400 });
   }
 
   const rawItems = Array.isArray(fields.items) ? fields.items : [];
@@ -72,7 +77,8 @@ export async function POST(request: Request) {
 
   const bodyHtml = `
     <p style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#E10600">Quotation ${escapeHtml(quoteNo)}</p>
-    <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#333">Prepared for <strong>${escapeHtml(clientName)}</strong>${service ? ` · ${escapeHtml(service)}` : ""}.</p>
+    <p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#333">Prepared for <strong>${escapeHtml(clientName)}</strong>${service ? ` · ${escapeHtml(service)}` : ""}.</p>
+    <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#333;white-space:pre-wrap">${escapeHtml(serviceDetail)}</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:18px">
       <tr>
         <td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#555;padding-bottom:4px">Issued ${escapeHtml(issued)}</td>
@@ -99,6 +105,7 @@ export async function POST(request: Request) {
     `Quotation ${quoteNo}`,
     `Prepared for ${clientName}`,
     service && `Service: ${service}`,
+    serviceDetail && serviceDetail,
     `Issued ${issued}`,
     validUntil && `Valid until ${validUntil}`,
     clientPhone && `Contact ${clientPhone}`,
