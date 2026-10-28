@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { navItems } from "@/data/site";
@@ -91,6 +91,9 @@ export default function Header() {
                   <Link href="/quote" className="text-sm font-semibold text-white">
                     Send quotation
                   </Link>
+                  <Link href="/admin/emails" className="text-sm font-semibold text-white">
+                    Saved emails
+                  </Link>
                   <button type="button" onClick={signOut} className="text-sm text-white/60 hover:text-white">
                     Sign out
                   </button>
@@ -103,10 +106,14 @@ export default function Header() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:block"
+              className="hidden items-center gap-3 md:flex"
             >
+              {admin ? null : (
+                <Link href="/admin" aria-label="Sign in" className="inline-flex items-center gap-1.5 text-white hover:text-white/80">
+                  <LogIn size={16} strokeWidth={2.25} />
+                  <span className="text-xs font-medium">Sign in</span>
+                </Link>
+              )}
               <Link
                 href="/contact"
                 className="rounded-full bg-[#E10600] px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#ff2a22] sm:px-6 sm:py-3 sm:text-base"
@@ -115,14 +122,20 @@ export default function Header() {
               </Link>
             </motion.div>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50 flex-shrink-0 rounded-lg border border-white/10 bg-black/40 p-2 text-white transition-colors duration-200 hover:bg-white/10 md:hidden"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.button>
+            <div className="flex items-center gap-2 md:hidden">
+              {admin ? null : (
+                <Link href="/admin" aria-label="Sign in" className="inline-flex h-10 w-10 items-center justify-center text-white">
+                  <LogIn size={18} strokeWidth={2.25} />
+                </Link>
+              )}
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(!isOpen)}
+                className="relative z-50 flex-shrink-0 rounded-lg border border-white/10 bg-black/40 p-2 text-white transition-colors duration-200 hover:bg-white/10"
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </motion.button>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
@@ -157,6 +170,9 @@ export default function Header() {
                   <Link href="/quote" onClick={() => setIsOpen(false)} className="block py-2 text-base font-semibold text-white">
                     Send quotation
                   </Link>
+                  <Link href="/admin/emails" onClick={() => setIsOpen(false)} className="block py-2 text-base font-semibold text-white">
+                    Saved emails
+                  </Link>
                   <button type="button" onClick={signOut} className="py-2 text-left text-base text-white/70">
                     Sign out
                   </button>
@@ -167,6 +183,12 @@ export default function Header() {
                 animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
               >
+                {admin ? null : (
+                  <Link href="/admin" onClick={() => setIsOpen(false)} className="inline-flex items-center gap-2 py-2 text-sm font-medium text-white">
+                    <LogIn size={16} strokeWidth={2.25} />
+                    Sign in
+                  </Link>
+                )}
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}

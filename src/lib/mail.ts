@@ -84,3 +84,15 @@ export function getMailer() {
 
   return { user, inbox, transporter };
 }
+
+export function deliveryOptions(user: string, to: string, bcc?: string) {
+  const recipients = [to, bcc].filter((value): value is string => Boolean(value));
+  return {
+    from: { name: "Bravioniyx Technologies", address: user },
+    replyTo: { name: "Bravioniyx Technologies", address: user },
+    envelope: { from: user, to: recipients },
+    headers: {
+      "X-Entity-Ref-ID": `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    },
+  };
+}

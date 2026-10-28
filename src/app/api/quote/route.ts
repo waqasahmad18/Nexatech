@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { brandedEmail, escapeHtml, getMailer, logoAttachment } from "@/lib/mail";
+import { brandedEmail, deliveryOptions, escapeHtml, getMailer, logoAttachment } from "@/lib/mail";
 import { ADMIN_COOKIE, verifySessionToken } from "@/lib/adminAuth";
 
-type Item = { description: string; qty: number; price: number };
+type ServiceItem = { name: string; detail: string; qty: number; price: number };
 
 function clean(value: unknown, limit: number) {
   return String(value ?? "").trim().slice(0, limit);
@@ -30,8 +30,6 @@ export async function POST(request: NextRequest) {
   const clientEmail = clean(fields.clientEmail, 200);
   const clientPhone = clean(fields.clientPhone, 40);
   const quoteNo = clean(fields.quoteNo, 40) || "BX-QUOTE";
-  const service = clean(fields.service, 160);
-  const serviceDetail = clean(fields.serviceDetail, 2000);
   const validUntil = clean(fields.validUntil, 40);
   const notes = clean(fields.notes, 2000);
   const currency = clean(fields.currency, 8) || "PKR";
@@ -40,45 +38,41 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Client name and a valid email are required." }, { status: 400 });
   }
 
-  if (!service || serviceDetail.length < 8) {
-    return NextResponse.json({ error: "Add the service and a short detail of the work." }, { status: 400 });
-  }
-
-  const rawItems = Array.isArray(fields.items) ? fields.items : [];
-  const items: Item[] = rawItems.slice(0, 30).flatMap((item) => {
+  const rawServices = Array.isArray(fields.services) ? fields.services : [];
+  const services: ServiceItem[] = rawServices.slice(0, 20).flatMap((item) => {
     const row = (item ?? {}) as Record<string, unknown>;
-    const description = clean(row.description, 240);
+    const name = clean(row.name, 160);
+    const detail = clean(row.detail, 2000);
     const qty = Number(row.qty);
     const price = Number(row.price);
-    if (!description || !Number.isFinite(qty) || qty <= 0 || !Number.isFinite(price) || price < 0) return [];
-    return [{ description, qty, price }];
+    if (!name || detail.length < 8 || !Number.isFinite(qty) || qty <= 0 || !Number.isFinite(price) || price < 0) return [];
+    return [{ name, detail, qty, price }];
   });
 
-  if (!items.length) {
-    return NextResponse.json({ error: "Add at least one line with a description, quantity, and price." }, { status: 400 });
+  if (!services.length || services.length !== rawServices.length) {
+    return NextResponse.json({ error: "Each service needs a name, a short detail, a quantity, and a price." }, { status: 400 });
   }
 
   const mailer = getMailer();
   if (!mailer) return NextResponse.json({ error: "Email is not set up yet." }, { status: 503 });
 
-  const total = items.reduce((sum, item) => sum + item.qty * item.price, 0);
+  const total = services.reduce((sum, item) => sum + item.qty * item.price, 0);
   const issued = new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
-  const rows = items
+  const rows = services
     .map(
       (item, index) => `<tr>
-        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#737373">${index + 1}</td>
-        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111">${escapeHtml(item.description)}</td>
-        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-align:right">${item.qty}</td>
-        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-align:right">${escapeHtml(money(item.price, currency))}</td>
-        <td style="padding:12px 0 12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-align:right">${escapeHtml(money(item.qty * item.price, currency))}</td>
+        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#737373;vertical-align:top">${index + 1}</td>
+        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;vertical-align:top"><strong>${escapeHtml(item.name)}</strong><br><span style="color:#444">${escapeHtml(item.detail)}</span></td>
+        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-align:right;vertical-align:top">${item.qty}</td>
+        <td style="padding:12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-align:right;vertical-align:top">${escapeHtml(money(item.price, currency))}</td>
+        <td style="padding:12px 0 12px 8px;border-bottom:1px solid #ececec;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111;text-align:right;vertical-align:top">${escapeHtml(money(item.qty * item.price, currency))}</td>
       </tr>`
     )
     .join("");
 
   const bodyHtml = `
     <p style="margin:0 0 6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#E10600">Quotation ${escapeHtml(quoteNo)}</p>
-    <p style="margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#333">Prepared for <strong>${escapeHtml(clientName)}</strong>${service ? ` · ${escapeHtml(service)}` : ""}.</p>
-    <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#333;white-space:pre-wrap">${escapeHtml(serviceDetail)}</p>
+    <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#333">Hello ${escapeHtml(clientName)}, this quotation is for the services below.</p>
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:18px">
       <tr>
         <td style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#555;padding-bottom:4px">Issued ${escapeHtml(issued)}</td>
@@ -89,7 +83,7 @@ export async function POST(request: NextRequest) {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
       <tr>
         <th style="padding:8px;border-bottom:2px solid #111;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:left;color:#111">#</th>
-        <th style="padding:8px;border-bottom:2px solid #111;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:left;color:#111">Description</th>
+        <th style="padding:8px;border-bottom:2px solid #111;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:left;color:#111">Service</th>
         <th style="padding:8px;border-bottom:2px solid #111;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:right;color:#111">Qty</th>
         <th style="padding:8px;border-bottom:2px solid #111;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:right;color:#111">Price</th>
         <th style="padding:8px 0 8px 8px;border-bottom:2px solid #111;font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-align:right;color:#111">Amount</th>
@@ -102,31 +96,31 @@ export async function POST(request: NextRequest) {
   `;
 
   const text = [
-    `Quotation ${quoteNo}`,
-    `Prepared for ${clientName}`,
-    service && `Service: ${service}`,
-    serviceDetail && serviceDetail,
-    `Issued ${issued}`,
-    validUntil && `Valid until ${validUntil}`,
-    clientPhone && `Contact ${clientPhone}`,
+    `Hello ${clientName},`,
     "",
-    ...items.map((item, index) => `${index + 1}. ${item.description} — ${item.qty} x ${money(item.price, currency)} = ${money(item.qty * item.price, currency)}`),
+    `Quotation ${quoteNo} from Bravioniyx Technologies.`,
+    `Issued ${issued}`,
+    validUntil ? `Valid until ${validUntil}` : "",
+    clientPhone ? `Contact ${clientPhone}` : "",
+    "",
+    ...services.map((item, index) => `${index + 1}. ${item.name}\n${item.detail}\n${item.qty} x ${money(item.price, currency)} = ${money(item.qty * item.price, currency)}`),
     "",
     `Total ${money(total, currency)}`,
-    notes && `Notes: ${notes}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
+    notes ? `Notes: ${notes}` : "",
+    "",
+    "Reply to this email if you want to accept the quotation or change it.",
+  ].join("\n");
+
+  const bcc = clientEmail.toLowerCase() === mailer.inbox.toLowerCase() ? undefined : mailer.inbox;
 
   try {
     await mailer.transporter.sendMail({
-      from: `Bravioniyx Technologies <${mailer.user}>`,
+      ...deliveryOptions(mailer.user, clientEmail, bcc),
       to: clientEmail,
-      bcc: clientEmail.toLowerCase() === mailer.inbox.toLowerCase() ? undefined : mailer.inbox,
-      replyTo: mailer.user,
-      subject: `Quotation ${quoteNo} — Bravioniyx Technologies`,
+      bcc,
+      subject: `Quotation ${quoteNo} for ${clientName}`,
       text,
-      html: brandedEmail("Quotation", bodyHtml),
+      html: brandedEmail(`Quotation for ${clientName}`, bodyHtml),
       attachments: [logoAttachment],
     });
   } catch {

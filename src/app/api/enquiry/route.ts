@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { brandedEmail, detailRows, getMailer, logoAttachment } from "@/lib/mail";
+import { savePromoEmail } from "@/lib/promoList";
 
 const max = { name: 120, email: 200, phone: 40, whatsapp: 40, service: 120, message: 4000 };
 
@@ -86,6 +87,14 @@ export async function POST(request: Request) {
     }
   } catch {
     return NextResponse.json({ error: "The message could not be sent. Use Chat on WhatsApp for now." }, { status: 502 });
+  }
+
+  if (email) {
+    try {
+      await savePromoEmail({ email, name, source, service });
+    } catch {
+      // The enquiry mail already went out. A storage miss should not fail the visitor.
+    }
   }
 
   return NextResponse.json({ ok: true });

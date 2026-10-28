@@ -3,33 +3,36 @@
 import { FormEvent, useMemo, useState } from "react";
 import { services } from "@/data/services";
 
-type Line = { description: string; qty: string; price: string };
+type ServiceRow = {
+  service: string;
+  customService: string;
+  detail: string;
+  qty: string;
+  price: string;
+};
 
-const emptyLine = (): Line => ({ description: "", qty: "1", price: "" });
+const emptyService = (): ServiceRow => ({ service: "", customService: "", detail: "", qty: "1", price: "" });
 
 export default function QuoteDesk() {
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
-  const [service, setService] = useState("");
-  const [customService, setCustomService] = useState("");
-  const [serviceDetail, setServiceDetail] = useState("");
   const [quoteNo, setQuoteNo] = useState(`BX-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`);
   const [validUntil, setValidUntil] = useState("");
   const [currency, setCurrency] = useState("PKR");
   const [notes, setNotes] = useState("");
-  const [items, setItems] = useState<Line[]>([emptyLine()]);
+  const [rows, setRows] = useState<ServiceRow[]>([emptyService()]);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [sent, setSent] = useState("");
 
   const total = useMemo(
-    () => items.reduce((sum, item) => sum + (Number(item.qty) || 0) * (Number(item.price) || 0), 0),
-    [items]
+    () => rows.reduce((sum, row) => sum + (Number(row.qty) || 0) * (Number(row.price) || 0), 0),
+    [rows]
   );
 
-  const update = (index: number, key: keyof Line, value: string) => {
-    setItems((current) => current.map((item, itemIndex) => (itemIndex === index ? { ...item, [key]: value } : item)));
+  const update = (index: number, key: keyof ServiceRow, value: string) => {
+    setRows((current) => current.map((row, rowIndex) => (rowIndex === index ? { ...row, [key]: value } : row)));
   };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -46,13 +49,16 @@ export default function QuoteDesk() {
           clientName,
           clientEmail,
           clientPhone,
-          service: service === "Other" ? customService : service,
-          serviceDetail,
           quoteNo,
           validUntil,
           currency,
           notes,
-          items: items.map((item) => ({ description: item.description, qty: Number(item.qty), price: Number(item.price) })),
+          services: rows.map((row) => ({
+            name: row.service === "Other" ? row.customService : row.service,
+            detail: row.detail,
+            qty: Number(row.qty),
+            price: Number(row.price),
+          })),
         }),
       });
       const result = (await response.json()) as { error?: string };
@@ -74,7 +80,7 @@ export default function QuoteDesk() {
     <form onSubmit={onSubmit} className="border border-neutral-300 bg-white text-neutral-950">
       <div className="border-b border-neutral-200 px-5 py-4">
         <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[#E10600]">Send quotation</p>
-        <h2 className="mt-1 text-xl font-semibold tracking-tight">Service detail and pricing</h2>
+        <h2 className="mt-1 text-xl font-semibold tracking-tight">Services and pricing</h2>
       </div>
       <div className="grid gap-4 p-5 sm:grid-cols-2">
         <label className="block text-xs font-medium">
@@ -88,26 +94,6 @@ export default function QuoteDesk() {
         <label className="block text-xs font-medium">
           Client contact
           <input value={clientPhone} onChange={(event) => setClientPhone(event.target.value)} className={field} />
-        </label>
-        <label className="block text-xs font-medium">
-          Service
-          <select required value={service} onChange={(event) => setService(event.target.value)} className={field}>
-            <option value="">Select a service</option>
-            {services.map((item) => (
-              <option key={item.slug} value={item.title}>{item.title}</option>
-            ))}
-            <option value="Other">Other</option>
-          </select>
-        </label>
-        {service === "Other" ? (
-          <label className="block text-xs font-medium sm:col-span-2">
-            Service name
-            <input required value={customService} onChange={(event) => setCustomService(event.target.value)} className={field} />
-          </label>
-        ) : null}
-        <label className="block text-xs font-medium sm:col-span-2">
-          Service detail
-          <textarea required minLength={8} value={serviceDetail} onChange={(event) => setServiceDetail(event.target.value)} rows={3} placeholder="Short description of the work this quotation covers" className={`${field} resize-none`} />
         </label>
         <label className="block text-xs font-medium">
           Quote number
@@ -127,26 +113,62 @@ export default function QuoteDesk() {
           </select>
         </label>
 
-        <div className="sm:col-span-2">
-          <div className="mb-2 flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em]">Pricing</p>
-            <button type="button" onClick={() => setItems((current) => [...current, emptyLine()])} className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E10600]">
-              Add line
+        <div className="space-y-3 sm:col-span-2">
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em]">Services</p>
+            <button type="button" onClick={() => setRows((current) => [...current, emptyService()])} className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E10600]">
+              Add service
             </button>
           </div>
-          <div className="space-y-2">
-            {items.map((item, index) => (
-              <div key={index} className="grid grid-cols-[1fr_72px_96px_auto] gap-2">
-                <input required placeholder="Description" value={item.description} onChange={(event) => update(index, "description", event.target.value)} className="border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-black" />
-                <input required type="number" min="1" step="1" value={item.qty} onChange={(event) => update(index, "qty", event.target.value)} className="border border-neutral-300 px-2 py-2 text-sm outline-none focus:border-black" />
-                <input required type="number" min="0" step="0.01" placeholder="Price" value={item.price} onChange={(event) => update(index, "price", event.target.value)} className="border border-neutral-300 px-2 py-2 text-sm outline-none focus:border-black" />
-                <button type="button" onClick={() => setItems((current) => (current.length === 1 ? current : current.filter((_, itemIndex) => itemIndex !== index)))} className="px-2 text-sm text-neutral-500">
-                  ×
-                </button>
+          {rows.map((row, index) => {
+            const amount = (Number(row.qty) || 0) * (Number(row.price) || 0);
+            return (
+              <div key={index} className="border border-neutral-200 p-3">
+                <div className="mb-3 flex items-center justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E10600]">Service {String(index + 1).padStart(2, "0")}</p>
+                  <button
+                    type="button"
+                    onClick={() => setRows((current) => (current.length === 1 ? current : current.filter((_, rowIndex) => rowIndex !== index)))}
+                    className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="block text-xs font-medium">
+                    Service
+                    <select required value={row.service} onChange={(event) => update(index, "service", event.target.value)} className={field}>
+                      <option value="">Select a service</option>
+                      {services.map((item) => (
+                        <option key={item.slug} value={item.title}>{item.title}</option>
+                      ))}
+                      <option value="Other">Other</option>
+                    </select>
+                  </label>
+                  <label className="block text-xs font-medium">
+                    Price
+                    <input required type="number" min="0" step="0.01" placeholder="Price" value={row.price} onChange={(event) => update(index, "price", event.target.value)} className={field} />
+                  </label>
+                  {row.service === "Other" ? (
+                    <label className="block text-xs font-medium sm:col-span-2">
+                      Service name
+                      <input required value={row.customService} onChange={(event) => update(index, "customService", event.target.value)} className={field} />
+                    </label>
+                  ) : null}
+                  <label className="block text-xs font-medium sm:col-span-2">
+                    Service detail
+                    <textarea required minLength={8} value={row.detail} onChange={(event) => update(index, "detail", event.target.value)} rows={2} placeholder="Short description of this service" className={`${field} resize-none`} />
+                  </label>
+                  <label className="block text-xs font-medium">
+                    Quantity
+                    <input required type="number" min="1" step="1" value={row.qty} onChange={(event) => update(index, "qty", event.target.value)} className={field} />
+                  </label>
+                  <p className="self-end text-sm font-semibold sm:text-right">Amount {currency} {amount.toLocaleString("en-US")}</p>
+                </div>
               </div>
-            ))}
-          </div>
-          <p className="mt-3 text-right text-lg font-semibold">Total {currency} {total.toLocaleString("en-US")}</p>
+            );
+          })}
+          <p className="text-right text-lg font-semibold">Total {currency} {total.toLocaleString("en-US")}</p>
         </div>
 
         <label className="block text-xs font-medium sm:col-span-2">
