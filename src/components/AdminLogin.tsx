@@ -26,7 +26,7 @@ export default function AdminLogin() {
         setError(result.error || "Those details do not match.");
         return;
       }
-      router.push("/quote");
+      router.push("/admin");
       router.refresh();
     } catch {
       setError("Sign-in could not be completed.");

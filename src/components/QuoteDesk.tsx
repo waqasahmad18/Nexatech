@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { services } from "@/data/services";
 
 type ServiceRow = {
@@ -13,7 +13,11 @@ type ServiceRow = {
 
 const emptyService = (): ServiceRow => ({ service: "", customService: "", detail: "", qty: "1", price: "" });
 
-export default function QuoteDesk() {
+export default function QuoteDesk({
+  prefill,
+}: {
+  prefill?: { name: string; email: string; key: number } | null;
+}) {
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
@@ -25,6 +29,12 @@ export default function QuoteDesk() {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [sent, setSent] = useState("");
+
+  useEffect(() => {
+    if (!prefill) return;
+    if (prefill.name) setClientName(prefill.name);
+    if (prefill.email) setClientEmail(prefill.email);
+  }, [prefill]);
 
   const total = useMemo(
     () => rows.reduce((sum, row) => sum + (Number(row.qty) || 0) * (Number(row.price) || 0), 0),

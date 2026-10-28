@@ -3,7 +3,13 @@
 import { useState } from "react";
 import type { PromoEntry } from "@/lib/promoList";
 
-export default function PromoList({ entries }: { entries: PromoEntry[] }) {
+export default function PromoList({
+  entries,
+  onUse,
+}: {
+  entries: PromoEntry[];
+  onUse?: (entry: PromoEntry) => void;
+}) {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -34,7 +40,14 @@ export default function PromoList({ entries }: { entries: PromoEntry[] }) {
               <p className="text-neutral-600">{entry.name || "No name"}</p>
             </div>
             <p className="text-neutral-700">{entry.service || entry.source || "Website form"}</p>
-            <p className="text-neutral-500 sm:text-right">{new Date(entry.savedAt).toLocaleString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</p>
+            <div className="flex items-center justify-between gap-3 sm:justify-end">
+              <p className="text-neutral-500">{new Date(entry.savedAt).toLocaleString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })}</p>
+              {onUse ? (
+                <button type="button" onClick={() => onUse(entry)} className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E10600]">
+                  Use
+                </button>
+              ) : null}
+            </div>
           </li>
         ))}
       </ul>
