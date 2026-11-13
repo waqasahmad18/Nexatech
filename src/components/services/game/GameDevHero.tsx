@@ -20,6 +20,14 @@ export default function GameDevHero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/78 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/45" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse at 15% 80%, rgba(225,6,0,0.28), transparent 45%)",
+          }}
+        />
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 md:justify-center md:pb-24">

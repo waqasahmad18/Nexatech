@@ -15,7 +15,7 @@ const scenes = [
     title: "VoIP services",
     text: "SIP trunks, softphones, extensions, and call routing for business voice over IP.",
     href: "/services/voip",
-    image: "/services/voip/hero.jpg",
+    image: "/services/voip/hero.webp",
     alt: "VoIP softphone workstation with headset and call screens",
     width: 960,
     height: 640,

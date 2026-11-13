@@ -23,8 +23,16 @@ const pillars = [
 
 export default function GameFeel() {
   return (
-    <section className="bg-[#0a0a0a] py-16 text-white md:py-20">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative overflow-hidden bg-[#0a0a0a] py-16 text-white md:py-20">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{
+          background:
+            "radial-gradient(ellipse at 10% 0%, rgba(225,6,0,0.12), transparent 40%), linear-gradient(to bottom, #070707, transparent 18%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -18,6 +18,14 @@ export default function GameWorldStrip() {
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/45 to-transparent" />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, #070707 0%, transparent 28%), radial-gradient(ellipse at 80% 20%, rgba(225,6,0,0.18), transparent 40%)",
+          }}
+        />
 
         <div className="relative z-10 mx-auto flex min-h-[44vh] max-w-7xl items-end px-6 py-14 md:min-h-[52vh] md:py-16">
           <motion.div
