@@ -477,6 +477,63 @@ export const services: Service[] = [
     ],
   },
   {
+    slug: "voip",
+    title: "VoIP Services",
+    summary: "Business phone systems over the internet — SIP, softphones, and call routing.",
+    details: [
+      "SIP trunk and PBX setup",
+      "Softphone and extension provisioning",
+      "Call routing, IVR, and number management",
+    ],
+    body: [
+      "SIP trunk and PBX setup connects your business numbers to a voice system that runs over IP, so calls are not locked to a single desk handset.",
+      "Softphone and extension provisioning gives each person a login and an extension they can use from a headset, laptop, or desk phone.",
+      "Call routing, IVR, and number management send callers to the right queue, menu, or person, and keep inbound numbers under your control.",
+    ],
+    why: [
+      {
+        title: "Calls travel with the team",
+        text: "Staff answer from the office, home, or a softphone on the laptop — the number stays the same.",
+      },
+      {
+        title: "One system for numbers and queues",
+        text: "Extensions, menus, and trunks live in one place instead of scattered desk lines no one can reconfigure.",
+      },
+      {
+        title: "Built to grow with the desk",
+        text: "Add extensions, queues, or numbers when the team grows, without ripping out the whole phone setup.",
+      },
+    ],
+    scale: [
+      {
+        title: "A working voice line",
+        text: "Start with trunks, extensions, and the numbers you need answering today.",
+      },
+      {
+        title: "Queues and menus",
+        text: "Add IVR, ring groups, and routing as more callers and more roles depend on the system.",
+      },
+      {
+        title: "More seats, same stack",
+        text: "Provision softphones and extensions as people join, on the same SIP and PBX base.",
+      },
+    ],
+    faqs: [
+      {
+        q: "Is this a traditional landline install?",
+        a: "No. VoIP means voice over IP: SIP trunks, PBX, softphones, and routing on internet-connected systems.",
+      },
+      {
+        q: "Can people answer from home?",
+        a: "Yes. Softphones and extensions are set up so staff can take calls off the office desk when needed.",
+      },
+      {
+        q: "Do you only set it up once?",
+        a: "Setup is the start. We can add extensions, numbers, and routing as the team grows.",
+      },
+    ],
+  },
+  {
     slug: "game-development",
     title: "Game Development",
     summary: "Games built in Unity, from the first playable scene onward.",
