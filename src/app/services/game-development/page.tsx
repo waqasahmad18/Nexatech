@@ -6,6 +6,9 @@ import EnquiryCard from "@/components/EnquiryCard";
 import ServiceFaq from "@/components/ServiceFaq";
 import GameDevHero from "@/components/services/game/GameDevHero";
 import GameWorldStrip from "@/components/services/game/GameWorldStrip";
+import GameFeel from "@/components/services/game/GameFeel";
+import ShipTargets from "@/components/services/game/ShipTargets";
+import PlayLoop from "@/components/services/game/PlayLoop";
 import UnityScope from "@/components/services/game/UnityScope";
 import BuildPath from "@/components/services/game/BuildPath";
 import { getService, services } from "@/data/services";
@@ -14,9 +17,10 @@ import Link from "next/link";
 
 const gameDisplay = Syne({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["700", "800"],
   variable: "--font-game-display",
   display: "swap",
+  preload: true,
 });
 
 const service = getService("game-development");
@@ -38,6 +42,9 @@ export default function GameDevelopmentPage() {
       <Header />
       <GameDevHero />
       <GameWorldStrip />
+      <GameFeel />
+      <ShipTargets />
+      <PlayLoop />
       <UnityScope body={service.body} />
       <BuildPath steps={service.scale} />
 
