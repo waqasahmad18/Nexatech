@@ -12,7 +12,10 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
+  // Dedicated page lives at /services/game-development
+  return services
+    .filter((service) => service.slug !== "game-development")
+    .map((service) => ({ slug: service.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps) {
