@@ -113,28 +113,44 @@ export default function PortalApp({
 
   if (!signedIn) {
     return (
-      <main className="mx-auto flex min-h-screen max-w-md flex-col justify-center px-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#E10600]">Bravioniyx</p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight">Outreach Portal</h1>
-        <p className="mt-3 text-sm text-white/65">
-          Powered by OpenOutreach. Sign in with the portal secret to find and review B2B leads.
-        </p>
-        <form onSubmit={login} className="mt-8 space-y-4">
-          <input
-            type="password"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            placeholder="OUTREACH_PORTAL_SECRET"
-            className="w-full border border-white/20 bg-black px-4 py-3 text-sm outline-none focus:border-[#E10600]"
-          />
-          {loginError ? <p className="text-sm text-[#E10600]">{loginError}</p> : null}
-          <button
-            type="submit"
-            className="w-full bg-[#E10600] px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white"
-          >
-            Sign in
-          </button>
-        </form>
+      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 text-white">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 20%, rgba(225,6,0,0.22), transparent 50%), radial-gradient(ellipse at 80% 90%, rgba(225,6,0,0.08), transparent 40%)",
+          }}
+        />
+        <div className="relative w-full max-w-md border border-white/15 bg-[#0a0a0a] p-8 shadow-[0_0_60px_rgba(225,6,0,0.12)]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#E10600]">
+            Bravioniyx · OpenOutreach
+          </p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-white">Outreach Portal</h1>
+          <p className="mt-3 text-sm leading-relaxed text-white/65">
+            Sign in with the portal secret to find and review B2B leads.
+          </p>
+          <form onSubmit={login} className="mt-8 space-y-4">
+            <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-white/50">
+              Secret key
+              <input
+                type="password"
+                value={secret}
+                onChange={(e) => setSecret(e.target.value)}
+                placeholder="Enter secret"
+                autoComplete="current-password"
+                className="mt-2 w-full border border-white/25 bg-black px-4 py-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#E10600]"
+              />
+            </label>
+            {loginError ? <p className="text-sm text-[#E10600]">{loginError}</p> : null}
+            <button
+              type="submit"
+              className="w-full bg-[#E10600] px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-black"
+            >
+              Sign in
+            </button>
+          </form>
+        </div>
       </main>
     );
   }
@@ -144,7 +160,7 @@ export default function PortalApp({
       <header className="border-b border-white/10">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-[#E10600]">Bravioniyx · OpenOutreach</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#E10600]">Bravioniyx · OpenOutreach</p>
             <h1 className="mt-1 text-2xl font-bold tracking-tight">Outreach Portal</h1>
           </div>
           <div className="flex flex-wrap items-center gap-3">
