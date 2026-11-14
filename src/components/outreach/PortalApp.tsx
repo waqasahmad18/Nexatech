@@ -113,25 +113,68 @@ export default function PortalApp({
 
   if (!signedIn) {
     return (
-      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-6 text-white">
+      <main
+        style={{
+          position: "relative",
+          display: "flex",
+          minHeight: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          background: "#000000",
+          color: "#ffffff",
+          padding: "24px",
+        }}
+      >
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
           style={{
+            pointerEvents: "none",
+            position: "absolute",
+            inset: 0,
             background:
-              "radial-gradient(ellipse at 50% 20%, rgba(225,6,0,0.22), transparent 50%), radial-gradient(ellipse at 80% 90%, rgba(225,6,0,0.08), transparent 40%)",
+              "radial-gradient(ellipse at 50% 20%, rgba(225,6,0,0.28), transparent 52%), radial-gradient(ellipse at 80% 90%, rgba(225,6,0,0.1), transparent 42%)",
           }}
         />
-        <div className="relative w-full max-w-md border border-white/15 bg-[#0a0a0a] p-8 shadow-[0_0_60px_rgba(225,6,0,0.12)]">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#E10600]">
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            maxWidth: "28rem",
+            border: "1px solid rgba(255,255,255,0.16)",
+            background: "#0a0a0a",
+            padding: "2rem",
+            boxShadow: "0 0 60px rgba(225,6,0,0.14)",
+          }}
+        >
+          <p
+            style={{
+              margin: 0,
+              fontSize: "11px",
+              fontWeight: 600,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "#E10600",
+            }}
+          >
             Bravioniyx · OpenOutreach
           </p>
-          <h1 className="mt-3 text-3xl font-bold tracking-tight text-white">Outreach Portal</h1>
-          <p className="mt-3 text-sm leading-relaxed text-white/65">
+          <h1
+            style={{
+              margin: "12px 0 0",
+              fontSize: "1.875rem",
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              color: "#ffffff",
+            }}
+          >
+            Outreach Portal
+          </h1>
+          <p style={{ margin: "12px 0 0", fontSize: "0.875rem", lineHeight: 1.6, color: "rgba(255,255,255,0.65)" }}>
             Sign in with the portal secret to find and review B2B leads.
           </p>
-          <form onSubmit={login} className="mt-8 space-y-4">
-            <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-white/50">
+          <form onSubmit={login} style={{ marginTop: "2rem", display: "grid", gap: "1rem" }}>
+            <label style={{ display: "block", fontSize: "12px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>
               Secret key
               <input
                 type="password"
@@ -139,13 +182,34 @@ export default function PortalApp({
                 onChange={(e) => setSecret(e.target.value)}
                 placeholder="Enter secret"
                 autoComplete="current-password"
-                className="mt-2 w-full border border-white/25 bg-black px-4 py-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#E10600]"
+                style={{
+                  marginTop: "8px",
+                  width: "100%",
+                  boxSizing: "border-box",
+                  border: "1px solid rgba(255,255,255,0.28)",
+                  background: "#000000",
+                  color: "#ffffff",
+                  padding: "12px 16px",
+                  fontSize: "0.875rem",
+                  outline: "none",
+                }}
               />
             </label>
-            {loginError ? <p className="text-sm text-[#E10600]">{loginError}</p> : null}
+            {loginError ? <p style={{ margin: 0, fontSize: "0.875rem", color: "#E10600" }}>{loginError}</p> : null}
             <button
               type="submit"
-              className="w-full bg-[#E10600] px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-black"
+              style={{
+                width: "100%",
+                border: "none",
+                background: "#E10600",
+                color: "#ffffff",
+                padding: "12px 16px",
+                fontSize: "12px",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                cursor: "pointer",
+              }}
             >
               Sign in
             </button>
@@ -156,12 +220,19 @@ export default function PortalApp({
   }
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <header className="border-b border-white/10">
+    <main style={{ minHeight: "100vh", background: "#000000", color: "#ffffff" }}>
+      <header className="border-b border-white/10" style={{ background: "#000000" }}>
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#E10600]">Bravioniyx · OpenOutreach</p>
-            <h1 className="mt-1 text-2xl font-bold tracking-tight">Outreach Portal</h1>
+            <p
+              className="text-[11px] font-semibold uppercase text-[#E10600]"
+              style={{ letterSpacing: "0.16em" }}
+            >
+              Bravioniyx · OpenOutreach
+            </p>
+            <h1 className="mt-1 text-2xl font-bold tracking-tight" style={{ color: "#ffffff" }}>
+              Outreach Portal
+            </h1>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             {websiteUrl ? (
