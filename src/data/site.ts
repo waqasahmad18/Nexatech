@@ -22,6 +22,5 @@ export const navItems = [
   { name: "Contact", href: "/contact" },
 ];
 
-/** Staff OpenOutreach portal (separate app). Set NEXT_PUBLIC_OUTREACH_PORTAL_URL. */
-export const outreachPortalUrl =
-  process.env.NEXT_PUBLIC_OUTREACH_PORTAL_URL || "http://localhost:3010";
+/** Staff OpenOutreach portal on this site. */
+export const outreachPortalUrl = "/outreach";

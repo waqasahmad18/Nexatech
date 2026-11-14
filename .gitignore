@@ -36,6 +36,11 @@ yarn-error.log*
 # saved enquiry emails for later promotional mail
 /data/promo-emails.json
 
+# OpenOutreach runtime (keys, sqlite, lead exports)
+/data/outreach/openoutreach/
+/data/outreach/openoutreach.env
+/data/outreach/leads.csv
+
 # vercel
 .vercel
 
