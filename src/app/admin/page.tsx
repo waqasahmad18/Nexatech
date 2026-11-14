@@ -6,6 +6,7 @@ import AdminLogin from "@/components/AdminLogin";
 import AdminDashboard from "@/components/AdminDashboard";
 import { ADMIN_COOKIE, verifySessionToken } from "@/lib/adminAuth";
 import { listPromoEmails } from "@/lib/promoList";
+import { outreachPortalUrl } from "@/data/site";
 
 export const metadata = {
   title: "Admin — Bravioniyx Technologies",
@@ -30,7 +31,7 @@ export default async function AdminPage() {
         }
       />
       <section className="bg-neutral-100 py-16">
-        {signedIn ? <AdminDashboard entries={entries} /> : (
+        {signedIn ? <AdminDashboard entries={entries} outreachPortalUrl={outreachPortalUrl} /> : (
           <div className="mx-auto max-w-md px-6">
             <AdminLogin />
           </div>
